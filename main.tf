@@ -101,17 +101,18 @@ resource "aws_mq_broker" "default" {
     time_zone   = "${var.maintenance_time_zone}"
   }
 
-  user = [{
-    "username"       = "${local.mq_admin_user}"
-    "password"       = "${local.mq_admin_password}"
-    "groups"         = ["admin"]
-    "console_access" = true
-  }]
-
-  user = [{
-    "username" = "${local.mq_application_user}"
-    "password" = "${local.mq_application_password}"
-  }]
+  user = [
+    {
+      "username"       = "${local.mq_admin_user}"
+      "password"       = "${local.mq_admin_password}"
+      "groups"         = ["admin"]
+      "console_access" = true
+    },
+    {
+      "username" = "${local.mq_application_user}"
+      "password" = "${local.mq_application_password}"
+    }
+  ]
 }
 
 resource "aws_security_group" "default" {
